@@ -10,9 +10,10 @@ var NODE_HOST = process.env.NODE_HOST || '127.0.0.1';
 var NODE_PORT = process.env.NODE_PORT || 3000;
 var MONGO_HOST = process.env.MONGO_HOST || '127.0.0.1';
 var MONGO_PORT = process.env.MONGO_PORT || 27017;
+var MONGO_DBNAME = process.env.MONGO_DBNAME || 'mylocaldb';
 var LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 
-var APP_NAME = 'node-restify-mongodb-';
+var APP_NAME = 'the-challenge';
 
 var config = {
   development: {
@@ -25,7 +26,7 @@ var config = {
     db: {
       host: MONGO_HOST,
       port: MONGO_PORT,
-      name: APP_NAME + NODE_ENV
+      name: MONGO_DBNAME
     },
     log: {
       name: APP_NAME + NODE_ENV,
@@ -42,7 +43,7 @@ var config = {
     db: {
       host: MONGO_HOST,
       port: MONGO_PORT,
-      name: APP_NAME + NODE_ENV
+      name: MONGO_DBNAME
     },
     log: {
       name: APP_NAME + NODE_ENV,
@@ -59,7 +60,7 @@ var config = {
     db: {
       host: MONGO_HOST,
       port: MONGO_PORT,
-      name: APP_NAME + NODE_ENV
+      name: MONGO_DBNAME
     },
     log: {
       name: APP_NAME + NODE_ENV,
