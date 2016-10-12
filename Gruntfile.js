@@ -65,6 +65,6 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('default', ['mongoimport', 'exec:jshint_test', 'exec:jasmine_test']);
-  grunt.registerTask('test', [ 'exec:jshint_test', 'exec:jasmine_test']);
+  grunt.registerTask('test', [ 'start', 'exec:jshint_test', 'exec:jasmine_test']);
   grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
 };
