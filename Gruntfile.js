@@ -16,12 +16,14 @@ module.exports = function (grunt) {
       }
     },
     exec: {
+      
       jshint_test: {
-        cmd: 'node_modules/jshint/bin/jshint --verbose app/ config/ app.js *.js'
+       cmd: 'node -v' // cmd: './node_modules/jshint/bin/jshint --verbose app/ config/ app.js *.js'
       },
+
       jasmine_test: {
         cmd: 'node node_modules/jasmine-node/lib/jasmine-node/cli.js --color --verbose --captureExceptions --forceexit spec'
-      }
+      }      
     },
     mocha_istanbul: {
       coverage: {
@@ -54,7 +56,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-mocha-istanbul');
 
+  grunt.registerTask('start', function () {
+  grunt.util.spawn(
+    { cmd: 'node'
+    , args: ['app.js']
+    })
+})
+
+
   grunt.registerTask('default', ['mongoimport', 'exec:jshint_test', 'exec:jasmine_test']);
-  grunt.registerTask('test', ['exec:jshint_test', 'exec:jasmine_test']);
+  grunt.registerTask('test', [ 'exec:jshint_test', 'exec:jasmine_test']);
   grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
 };

@@ -1,8 +1,8 @@
 {
-  "name": "node-restify-mongodb",
+  "name": "the-challenge",
   "version": "0.0.0",
   "description": "A basic RESTful CRUD API service, based on Node, Restify, and MongoDB",
-  "author": "",
+  "author": "Marius Schumann",
   "main": "app.js",
   "scripts": {
     "start": "node app.js | ./node_modules/bunyan/bin/bunyan",
