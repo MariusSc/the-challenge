@@ -22,7 +22,7 @@
             "outFiles": []
         },
         {
-            "name": "Launch Tests",
+            "name": "Run Integration Tests",
             "type": "node",
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/mocha/bin/mocha",

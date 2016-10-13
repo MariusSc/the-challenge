@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js", 
-    "test": "mocha ./spec/ --reporter spec --no-timeouts --debug"
+    "test": "grunt test"
   },
   "dependencies": {
     "bunyan": "^1.8.1",
