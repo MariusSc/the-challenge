@@ -4,6 +4,10 @@
   "description": "A basic RESTful CRUD API service, based on Node, Restify, and MongoDB",
   "author": "Marius Schumann",
   "main": "app.js",
+  "engines": {
+    "node": "6.x",
+    "npm": "3.10.x"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "grunt test"
