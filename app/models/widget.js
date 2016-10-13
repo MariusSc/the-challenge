@@ -39,5 +39,4 @@ widgetSchema.set('toJSON', {
 });
 
 var Widget = mongoose.model('Widget', widgetSchema);
-
 module.exports = Widget;

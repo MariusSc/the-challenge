@@ -7,6 +7,7 @@ var request = require('request');
 var mongoose = require('mongoose');
 var should = require('should');
 var path = require('path');
+var async = require("async");
 
 var config = require(path.join(__dirname, '../config/config'));
 var base_url = ''.concat('http://', config.app.address, ':', config.app.port);
@@ -21,22 +22,23 @@ var Widget = mongoose.model('Widget');
 
 var log = require(path.join(__dirname, '../log'));
 
-
 //////////// HELPER FUNCTIONS ////////////
 
-function saveWidget(widget) {
+function saveWidget(callback, widget) {
   widget.save(function (error) {
     if (error) {
       log.error(error);
     }
-  });
+    callback();
+  });     
 }
 
-function removeWidgets(options) {
+function removeWidgets(callback, options) {
   Widget.remove(options, function (error) {
     if (error) {
       log.error(error);
     }
+    callback();
   });
 }
 
@@ -46,39 +48,52 @@ function removeWidgets(options) {
 // find all widgets
 describe('Widget URIs', function () {
   describe('GET /widgets', function () {
-    beforeEach(function () {
-      removeWidgets({});
-
-      saveWidget(new Widget({
-        product_id: 'YMIYW2VROS',
-        name: 'TestWidget_YMIYW2VROS',
-        color: 'Black',
-        size: 'Huge',
-        price: '$99.99',
-        inventory: 96
-      }));
-
-      saveWidget(new Widget({
-        product_id: 'FGBRYL6XSF',
-        name: 'TestWidget_FGBRYL6XSF',
-        color: 'Red',
-        size: 'Huge',
-        price: '$127.49',
-        inventory: 1205
-      }));
-
-      saveWidget(new Widget({
-        product_id: '5H7HW8Y1E2',
-        name: 'TestWidget_5H7HW8Y1E2',
-        color: 'Black',
-        size: 'Tiny',
-        price: '$1.49',
-        inventory: 0
-      }));
+    beforeEach(function (done) {
+      
+      async.series([
+        function(callback){
+          removeWidgets(callback,{});
+        },       
+        function(callback){       
+          saveWidget(callback, new Widget({
+            product_id: 'YMIYW2VROS',
+            name: 'TestWidget_YMIYW2VROS',
+            color: 'Black',
+            size: 'Huge',
+            price: '$99.99',
+            inventory: 96
+          }));
+        },
+        function(callback){
+          saveWidget(callback, new Widget({
+            product_id: 'FGBRYL6XSF',
+            name: 'TestWidget_FGBRYL6XSF',
+            color: 'Red',
+            size: 'Huge',
+            price: '$127.49',
+            inventory: 1205
+          }));      
+        },
+        function(callback){
+          saveWidget(callback, new Widget({
+            product_id: '5H7HW8Y1E2',
+            name: 'TestWidget_5H7HW8Y1E2',
+            color: 'Black',
+            size: 'Tiny',
+            price: '$1.49',
+            inventory: 0
+          }));    
+        }], function(err) {
+          if (err) {
+              throw err;
+          }
+          done();
+      });
     });
 
-    afterEach(function () {
-      removeWidgets({});
+
+    afterEach(function (done) {
+      removeWidgets(done, {});
     });
 
     var url = base_url + '/widgets';
@@ -100,6 +115,9 @@ describe('Widget URIs', function () {
 
     it('should respond with exactly (3) widget objects in an array', function (done) {
       request(options, function (error, response, body) {
+        if(error) {
+          log.error(error);
+        }
         var widget = JSON.parse(body);
         widget.should.be.an.instanceof(Array).and.have.a.lengthOf(3);
         done();
@@ -116,30 +134,31 @@ describe('Widget URIs', function () {
 
   // find one widget
   describe('GET /widgets/:product_id', function () {
-    beforeEach(function () {
-      removeWidgets({});
+    beforeEach(function (done) {
 
-      saveWidget(new Widget({
-        product_id: '4YFZH127BX',
-        name: 'TestWidget_4YFZH127BX',
-        color: 'Orange',
-        size: 'Small',
-        price: '$19.93',
-        inventory: 13
-      }));
-
-      saveWidget(new Widget({
-        product_id: '0EJLZK6BK8',
-        name: 'TestWidget_0EJLZK6BK8',
-        color: 'Red',
-        size: 'Huge',
-        price: '$137.49',
-        inventory: 46
-      }));
+      async.series([
+        function(callback){
+          removeWidgets(callback,{});
+        },       
+        function(callback){       
+          saveWidget(callback, new Widget({
+            product_id: '4YFZH127BX',
+            name: 'TestWidget_4YFZH127BX',
+            color: 'Orange',
+            size: 'Small',
+            price: '$19.93',
+            inventory: 13
+          }));
+        }], function(err) {
+          if (err) {
+              throw err;
+          }
+          done();
+        });
     });
 
-    afterEach(function () {
-      removeWidgets({});
+    afterEach(function (done) {
+      removeWidgets(done,{});
     });
 
     var url1 = base_url + '/widgets/4YFZH127BX';
@@ -195,11 +214,11 @@ describe('Widget URIs', function () {
 
   // create new widget
   describe('POST /widgets', function () {
-    beforeEach(function () {
-      removeWidgets({});
+    beforeEach(function (done) {
+      removeWidgets(done, {});
     });
-    afterEach(function () {
-      removeWidgets({});
+    afterEach(function (done) {
+      removeWidgets(done,{});
     });
 
     var widget = {
@@ -247,11 +266,11 @@ describe('Widget URIs', function () {
 
   // create new widget
   describe('POST /widgets', function () {
-    beforeEach(function () {
-      removeWidgets({});
+    beforeEach(function (done) {
+      removeWidgets(done, {});
     });
-    afterEach(function () {
-      removeWidgets({});
+    afterEach(function (done) {
+      removeWidgets(done, {});
     });
 
     var widget = { // no 'name' key
@@ -291,21 +310,32 @@ describe('Widget URIs', function () {
 
   // update one widget
   describe('PUT /widgets', function () {
-    beforeEach(function () {
-      removeWidgets({});
+    beforeEach(function (done) {
+      async.series([
+        function(callback){
+          removeWidgets(callback, {});
+        },
+        function(callback){
+          saveWidget(callback, new Widget({
+            product_id: 'ZC7DV7BSPE',
+            name: 'TestWidget_ZC7DV7BSPE',
+            color: 'Blue',
+            size: 'Small',
+            price: '$9.92',
+            inventory: 27
+          }));
+        }
+      ], function(err){
+        if(err) {
+          throw err;
+        }
+        done();
+      });
 
-      saveWidget(new Widget({
-        product_id: 'ZC7DV7BSPE',
-        name: 'TestWidget_ZC7DV7BSPE',
-        color: 'Blue',
-        size: 'Small',
-        price: '$9.92',
-        inventory: 27
-      }));
     });
 
-    afterEach(function () {
-      removeWidgets({});
+    afterEach(function (done) {
+      removeWidgets(done, {});
     });
 
     var widget = { // modified inventory level
@@ -346,45 +376,59 @@ describe('Widget URIs', function () {
 
   // update and confirm one widget
   describe('PUT /widgets', function () {
-    beforeEach(function () {
-      removeWidgets({});
-
-      saveWidget(new Widget({
-        product_id: 'ZC7DV7BSPE',
-        name: 'TestWidget_ZC7DV7BSPE',
-        color: 'Blue',
-        size: 'Small',
-        price: '$9.92',
-        inventory: 27
-      }));
-
-      var widget = { // modified inventory level
-        product_id: 'ZC7DV7BSPE',
-        name: 'TestWidget_ZC7DV7BSPE',
-        color: 'Blue',
-        size: 'Small',
-        price: '$9.92',
-        inventory: 21
-      };
-
-      var url1 = base_url + '/widgets';
-
-      var options1 = {
-        method: 'PUT',
-        url: url1,
-        headers: {
-          accept: 'application/json'
+    beforeEach(function (done) {
+      async.series([ 
+        function(callback)
+        {
+          removeWidgets(callback, {});
         },
-        body: widget,
-        json: true
-      };
+        function(callback)
+        {
+          saveWidget(callback, new Widget({
+            product_id: 'ZC7DV7BSPE',
+            name: 'TestWidget_ZC7DV7BSPE',
+            color: 'Blue',
+            size: 'Small',
+            price: '$9.92',
+            inventory: 27
+          }));
+        },
+        function(callback){
+          var widget = { // modified inventory level
+            product_id: 'ZC7DV7BSPE',
+            name: 'TestWidget_ZC7DV7BSPE',
+            color: 'Blue',
+            size: 'Small',
+            price: '$9.92',
+            inventory: 21
+          };
 
-      request(options1, function (error, response, body) {
+          var url1 = base_url + '/widgets';
+
+          var options1 = {
+            method: 'PUT',
+            url: url1,
+            headers: {
+              accept: 'application/json'
+            },
+            body: widget,
+            json: true
+          };
+
+          request(options1, function (error, response, body) {
+            callback();
+          });                    
+        }
+      ], function(err){
+        if(err) {
+          throw err;
+        }
+        done();
       });
     });
 
-    afterEach(function () {
-      removeWidgets({});
+    afterEach(function (done) {
+      removeWidgets(done, {});
     });
 
     var url2 = base_url + '/widgets/ZC7DV7BSPE';
@@ -408,21 +452,33 @@ describe('Widget URIs', function () {
 
   // delete one widget
   describe('DELETE /widgets/:product_id', function () {
-    beforeEach(function () {
-      removeWidgets({});
+    beforeEach(function (done) {
 
-      saveWidget(new Widget({
-        product_id: '3NDO87DF3C',
-        name: 'TestWidget_3NDO87DF3C',
-        color: 'Green',
-        size: 'Small',
-        price: '$71.95',
-        inventory: 653
-      }));
+      async.series([
+        function(callback){
+          removeWidgets(callback,{});
+
+        },
+        function(callback) {
+          saveWidget(callback, new Widget({
+            product_id: '3NDO87DF3C',
+            name: 'TestWidget_3NDO87DF3C',
+            color: 'Green',
+            size: 'Small',
+            price: '$71.95',
+            inventory: 653
+          }));
+        }
+      ], function(err){
+        if(err){
+          throw err;
+        }
+        done();
+      });
     });
 
-    afterEach(function () {
-      removeWidgets({});
+    afterEach(function (done) {
+      removeWidgets(done, {});
     });
 
     var url = base_url + '/widgets/3NDO87DF3C';

@@ -67,33 +67,6 @@ describe('Utility URIs', function () {
     });
   });
 
-  describe('GET /utils/info', function () {
-    var url = base_url + '/utils/info';
-
-    var options = {
-      method: 'GET',
-      url: url,
-      headers: {
-        accept: 'application/json'
-      }
-    };
-
-    it('should respond with a status code of 200', function (done) {
-      request(options, function (error, response, body) {
-        response.statusCode.should.be.exactly(200);
-        done();
-      });
-    });
-
-    it('should respond with exactly (1) \'info\' object containing (4) properties', function (done) {
-      request(options, function (error, response, body) {
-        var info = JSON.parse(body);
-        Object.keys(info).should.have.a.lengthOf(4);
-        done();
-      });
-    });
-  });
-
   describe('GET /utils/config', function () {
     var url = base_url + '/utils/config';
 

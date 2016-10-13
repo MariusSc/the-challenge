@@ -28,6 +28,7 @@ module.exports = function (server) {
         return next(error);
       } else {
         res.header('X-Total-Count', widgets.length);
+        console.log(widgets);
         res.send(200, widgets);
         return next();
       }

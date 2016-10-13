@@ -56,15 +56,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-mocha-istanbul');
 
-  grunt.registerTask('start', function () {
+  grunt.registerTask('start_server', function () {
   grunt.util.spawn(
     { cmd: 'node'
     , args: ['app.js']
     })
-})
+  });
 
 
   grunt.registerTask('default', ['mongoimport', 'exec:jshint_test', 'exec:jasmine_test']);
-  grunt.registerTask('test', [ 'start', 'exec:jshint_test', 'exec:jasmine_test']);
+  grunt.registerTask('test', [ 'start_server', 'exec:jshint_test', 'exec:jasmine_test']);
   grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
 };
