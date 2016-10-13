@@ -1,4 +1,3 @@
-/*jslint node: true */
 'use strict';
 
 var restify = require('restify');
@@ -29,13 +28,13 @@ server.use(
   }
 );
 
-/*jslint unparam:true*/
-// Default error handler. Personalize according to your needs.
-server.on('uncaughtException', function (req, res, route, err) {
-  log.info('******* Begin Error *******\n%s\n*******\n%s\n******* End Error *******', route, err.stack);
+server.on('uncaughtException', function(req, res, route, err) {
+  log.info('* Begin Error *\n%s\n* \n%s\n*End Error *', route, err.stack);
+
   if (!res.headersSent) {
     return res.send(500, {ok: false});
   }
+
   res.write('\n');
   res.end();
 });
@@ -45,11 +44,12 @@ server.on('after', restify.auditLogger({log: log}));
 models();
 routes(server);
 
-server.get('/', function (req, res, next) {
+server.get('/', function(req, res, next) {
   res.send(config.app.name);
   return next();
 });
 
-server.listen(config.app.port, function () {
-  log.info('Application %s listening at %s:%s', config.app.name, config.app.address, config.app.port);
+server.listen(config.app.port, function() {
+  log.info('Application %s listening at %s:%s',
+    config.app.name, config.app.address, config.app.port);
 });
