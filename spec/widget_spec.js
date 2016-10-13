@@ -44,7 +44,7 @@ function removeWidgets(callback, options) {
     callback();
   });
 }
-
+  
 //////////// TESTS ///////////////////////
 
 // find all widgets
