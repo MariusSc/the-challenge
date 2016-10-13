@@ -11,7 +11,7 @@ var NODE_PORT = process.env.NODE_PORT || 3000;
 var MONGO_HOST = process.env.MONGO_HOST || '127.0.0.1';
 var MONGO_PORT = process.env.MONGO_PORT || 27017;
 var MONGO_DBNAME = process.env.MONGO_DBNAME || 'development';
-var LOG_LEVEL = process.env.LOG_LEVEL || 'debug';
+var LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 
 var APP_NAME = 'the-challenge';
 

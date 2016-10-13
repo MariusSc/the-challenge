@@ -3,20 +3,23 @@
 
 //////////// VARIABLES ///////////////////
 
+var path = require('path');
+
+var app = require(path.join(__dirname, '../app'));
+
 var request = require('request');
 var mongoose = require('mongoose');
 var should = require('should');
-var path = require('path');
 var async = require("async");
 
 var config = require(path.join(__dirname, '../config/config'));
 var base_url = ''.concat('http://', config.app.address, ':', config.app.port);
 
-var dbConnection = require(path.join(__dirname, '../db-connection'));
-dbConnection();
+//var dbConnection = require(path.join(__dirname, '../db-connection'));
+//dbConnection();
 
-var widget_model = require(path.join(__dirname, '../app/models/widget'));
-widget_model();
+//var widget_model = require(path.join(__dirname, '../app/models/widget'));
+//widget_model();
 
 var Widget = mongoose.model('Widget');
 
