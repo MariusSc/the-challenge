@@ -5,7 +5,7 @@
   "author": "Marius Schumann",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js", 
+    "start": "node app.js",
     "test": "grunt test"
   },
   "dependencies": {
@@ -16,7 +16,11 @@
     "restify": "^4.1.0"
   },
   "devDependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-google": "^0.6.0",
+    "eslint-plugin-react": "^6.4.1",
     "grunt": "^1.0.1",
+    "grunt-eslint": "^19.0.0",
     "grunt-exec": "^1.0.0",
     "grunt-mocha-istanbul": "^5.0.1",
     "grunt-mongoimport": "^0.1.7",

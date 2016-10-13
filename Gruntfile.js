@@ -2,6 +2,7 @@ var config = require('./config/config');
 
 module.exports = function (grunt) {
   grunt.initConfig({
+
     mongoimport: {
       options: {
         db: config.db.name,
@@ -43,21 +44,27 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+    eslint: {
+      target: ['app.js'] //, 'app/**/*.js']
     }
   });
 
-  grunt.event.on('coverage', function (lcov, done) {
-    console.log(lcov);
-    done(); // or done(false); in case of error
-  });
+  // grunt.event.on('coverage', function (lcov, done) {
+  //   console.log(lcov);
+  //   done(); 
+  // });
 
 
   grunt.loadNpmTasks('grunt-mongoimport');
   grunt.loadNpmTasks('grunt-exec');
-  grunt.loadNpmTasks('grunt-mocha-istanbul');
+  grunt.loadNpmTasks('grunt-eslint');
+  
+  // Todo: Improvement - add code coverage 
+  // grunt.loadNpmTasks('grunt-mocha-istanbul');
 
 
   // grunt.registerTask('default', ['mongoimport', 'exec:jshint_test', 'exec:jasmine_test']);
-  grunt.registerTask('test', [ 'exec:integration_tests']);
-  grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
+  grunt.registerTask('test', [ 'eslint', 'exec:integration_tests']);
+  // grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
 };
