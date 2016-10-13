@@ -1,3 +1,10 @@
 language: node_js
 node_js:
-  - "6.1"
+- '6.1'
+deploy:
+  provider: heroku
+  api_key:
+    secure: soT7UaYTZ6U6CYTa4RcBN/PgCi9IYHdE7aZBNQrnTnndVbZQxyv2ncL3p9Gt02NQz0qyxFcs/DehX1fy+WLCy6rTC16dRvg0+LEgxwJfWgsR/M/M1x47PJEbRBrHJIIsJjQ8veLvowEF3sWWrDBAw/ogbNKurzYl7CaA0DZh8bnh+ORM4Q/7xs49ErKboLOEx9u1Fev0yvGou6m7lt2gujxR/HPOJtWsekbH6wyCYUfkHl2zX3i79SZiM4p+QJeRUcLPW4H3SKZYFI4O10hebppSN0vvycsnNzVcwMzLRHXRpSaah2C1EEzC9CK+n0SgZlOg/8dhV9QJCCPn28DnAJlxmirf6SP0/unkwFJ0bAOJHzPZPwRnMpq1s8GYdcBPb+8hZG91iYHquHWme9Ye+MVQTl3yZ1WO4yLWveJgv8Sfimta5giI9xuMyKDgh4qLAmy1m0i777ZEQqJzJVz51yCf1No/kDsdGV3vq/cg9N7LaPVusFqiVaVPQxFQaDiZjm6dbN3PhfJQtvp1LXUUOL3vIN9fHm+mQLHftyP4iULdqAhtUtl7z7jbcKfKUTxF7tVoY6lP7afI9A8pgFkxhlEvEiZZJa31YOsoQiO4ZOpsuJzIh0oYsSYi35ec9pPa0P1MA83AB7VrDOzT6yvrY2jMuDCXkRcITyFku/mfPdo=
+  app: the-challenge-staging
+  on:
+    repo: MariusSc/the-challenge
