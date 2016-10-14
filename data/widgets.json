@@ -1,6 +1,6 @@
 [
   {
-    "product_id": "RTHGP1FCGN",
+    "productId": "RTHGP1FCGN",
     "name": "Reflupper",
     "color": "Red",
     "size": "Large",
@@ -8,7 +8,7 @@
     "inventory": 25
   },
   {
-    "product_id": "SVHXPAWEOD",
+    "productId": "SVHXPAWEOD",
     "name": "Voonex",
     "color": "Green",
     "size": "Medium",
@@ -16,7 +16,7 @@
     "inventory": 50
   },
   {
-    "product_id": "GKO1SFX04M",
+    "productId": "GKO1SFX04M",
     "name": "Jukelox",
     "color": "Blue",
     "size": "Small",
@@ -24,7 +24,7 @@
     "inventory": 75
   },
   {
-    "product_id": "3YIRGZ6TDW",
+    "productId": "3YIRGZ6TDW",
     "name": "Groopster",
     "color": "Yellow",
     "size": "Large",
@@ -32,7 +32,7 @@
     "inventory": 100
   },
   {
-    "product_id": "4OZNPBMIDR",
+    "productId": "4OZNPBMIDR",
     "name": "Fapster",
     "color": "Orange",
     "size": "Medium",
@@ -40,7 +40,7 @@
     "inventory": 5
   },
   {
-    "product_id": "6T2HC5MIZ9",
+    "productId": "6T2HC5MIZ9",
     "name": "Chaintwist",
     "color": "Purple",
     "size": "Tiny",
@@ -48,7 +48,7 @@
     "inventory": 15
   },
   {
-    "product_id": "ERZ1RMJFR3",
+    "productId": "ERZ1RMJFR3",
     "name": "Glozzom",
     "color": "Red",
     "size": "Huge",
@@ -56,7 +56,7 @@
     "inventory": 35
   },
   {
-    "product_id": "0BVCLPDZ42",
+    "productId": "0BVCLPDZ42",
     "name": "Chaintwist",
     "color": "Blue",
     "size": "Medium",
@@ -64,7 +64,7 @@
     "inventory": 55
   },
   {
-    "product_id": "N43WV5234S",
+    "productId": "N43WV5234S",
     "name": "Zapster",
     "color": "Green",
     "size": "Tiny",
@@ -72,7 +72,7 @@
     "inventory": 65
   },
   {
-    "product_id": "N212QZOD9B",
+    "productId": "N212QZOD9B",
     "name": "Pentwist",
     "color": "Yellow",
     "size": "Huge",

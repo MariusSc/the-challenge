@@ -1,4 +1,3 @@
-/*jslint node: true */
 'use strict';
 
 var path = require('path');
@@ -8,7 +7,7 @@ var config = require(path.join(__dirname, '../../config/config'));
 var PATH = '/utils';
 var VERSION = '1.0.0';
 
-module.exports = function (server) {
+module.exports = function(server) {
   server.get({path: PATH + '/ping', version: VERSION}, ping);
   server.get({path: PATH + '/health', version: VERSION}, health);
   server.get({path: PATH + '/config', version: VERSION}, configuraton);

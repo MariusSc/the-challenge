@@ -1,4 +1,3 @@
-/*jslint node: true */
 'use strict';
 
 //////////// VARIABLES ///////////////////
@@ -58,7 +57,7 @@ describe('Widget URIs', function () {
         },       
         function(callback){       
           saveWidget(callback, new Widget({
-            product_id: 'YMIYW2VROS',
+            productId: 'YMIYW2VROS',
             name: 'TestWidget_YMIYW2VROS',
             color: 'Black',
             size: 'Huge',
@@ -68,7 +67,7 @@ describe('Widget URIs', function () {
         },
         function(callback){
           saveWidget(callback, new Widget({
-            product_id: 'FGBRYL6XSF',
+            productId: 'FGBRYL6XSF',
             name: 'TestWidget_FGBRYL6XSF',
             color: 'Red',
             size: 'Huge',
@@ -78,16 +77,17 @@ describe('Widget URIs', function () {
         },
         function(callback){
           saveWidget(callback, new Widget({
-            product_id: '5H7HW8Y1E2',
+            productId: '5H7HW8Y1E2',
             name: 'TestWidget_5H7HW8Y1E2',
             color: 'Black',
             size: 'Tiny',
             price: '$1.49',
             inventory: 0
           }));    
-        }], function(err) {
-          if (err) {
-              throw err;
+        }], function(error) {
+          if (error) {
+            log.error(error);
+            throw error;
           }
           done();
       });
@@ -135,7 +135,7 @@ describe('Widget URIs', function () {
   });
 
   // find one widget
-  describe('GET /widgets/:product_id', function () {
+  describe('GET /widgets/:productId', function () {
     beforeEach(function (done) {
 
       async.series([
@@ -144,7 +144,7 @@ describe('Widget URIs', function () {
         },       
         function(callback){       
           saveWidget(callback, new Widget({
-            product_id: '4YFZH127BX',
+            productId: '4YFZH127BX',
             name: 'TestWidget_4YFZH127BX',
             color: 'Orange',
             size: 'Small',
@@ -206,7 +206,7 @@ describe('Widget URIs', function () {
       }
     };
 
-    it('should respond with \'null\' when the \'product_id\' is not found', function (done) {
+    it('should respond with \'null\' when the \'productId\' is not found', function (done) {
       request(options2, function (error, response, body) {
         body.should.be.null;
         done();
@@ -224,7 +224,7 @@ describe('Widget URIs', function () {
     });
 
     var widget = {
-      product_id: 'DC3NHTGNAY',
+      productId: 'DC3NHTGNAY',
       name: 'TestWidget_DC3NHTGNAY',
       color: 'Green',
       size: 'Big',
@@ -276,7 +276,7 @@ describe('Widget URIs', function () {
     });
 
     var widget = { // no 'name' key
-      product_id: 'DC3NHTGNAY',
+      productId: 'DC3NHTGNAY',
       color: 'Green',
       size: 'Big',
       price: '$79.92',
@@ -319,7 +319,7 @@ describe('Widget URIs', function () {
         },
         function(callback){
           saveWidget(callback, new Widget({
-            product_id: 'ZC7DV7BSPE',
+            productId: 'ZC7DV7BSPE',
             name: 'TestWidget_ZC7DV7BSPE',
             color: 'Blue',
             size: 'Small',
@@ -341,7 +341,7 @@ describe('Widget URIs', function () {
     });
 
     var widget = { // modified inventory level
-      product_id: 'ZC7DV7BSPE',
+      productId: 'ZC7DV7BSPE',
       name: 'TestWidget_ZC7DV7BSPE',
       color: 'Blue',
       size: 'Small',
@@ -387,7 +387,7 @@ describe('Widget URIs', function () {
         function(callback)
         {
           saveWidget(callback, new Widget({
-            product_id: 'ZC7DV7BSPE',
+            productId: 'ZC7DV7BSPE',
             name: 'TestWidget_ZC7DV7BSPE',
             color: 'Blue',
             size: 'Small',
@@ -397,7 +397,7 @@ describe('Widget URIs', function () {
         },
         function(callback){
           var widget = { // modified inventory level
-            product_id: 'ZC7DV7BSPE',
+            productId: 'ZC7DV7BSPE',
             name: 'TestWidget_ZC7DV7BSPE',
             color: 'Blue',
             size: 'Small',
@@ -453,7 +453,7 @@ describe('Widget URIs', function () {
   });
 
   // delete one widget
-  describe('DELETE /widgets/:product_id', function () {
+  describe('DELETE /widgets/:productId', function () {
     beforeEach(function (done) {
 
       async.series([
@@ -463,7 +463,7 @@ describe('Widget URIs', function () {
         },
         function(callback) {
           saveWidget(callback, new Widget({
-            product_id: '3NDO87DF3C',
+            productId: '3NDO87DF3C',
             name: 'TestWidget_3NDO87DF3C',
             color: 'Green',
             size: 'Small',

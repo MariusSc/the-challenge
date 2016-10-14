@@ -1,4 +1,3 @@
-/*jslint node: true */
 'use strict';
 
 var mongoose = require('mongoose');
@@ -9,11 +8,12 @@ var Schema = mongoose.Schema;
 var Currency = mongoose.Types.Currency;
 
 var widgetSchema = new Schema({
-  product_id: {type: String, required: true, index: true, unique: true},
+  productId: {type: String, required: true, index: true, unique: true},
   name: {type: String, required: true},
   color: {
     type: String, required: true,
-    enum: ['Red', 'Blue', 'Yellow', 'Green', 'Orange', 'Purple', 'White', 'Black']
+    enum: ['Red', 'Blue', 'Yellow', 'Green', 'Orange',
+      'Purple', 'White', 'Black']
   },
   size: {
     type: String, required: true,
@@ -31,7 +31,7 @@ widgetSchema.plugin(uniqueValidator);
 // use mongoose currency to transform price
 widgetSchema.set('toJSON', {
   virtuals: true,
-  transform: function (doc, ret, options) {
+  transform: function(doc, ret, options) {
     ret.price = Number(ret.price / 100).toFixed(2);
     delete ret.__v; // hide
     delete ret._id; // hide
