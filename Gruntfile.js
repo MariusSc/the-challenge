@@ -46,7 +46,7 @@ module.exports = function (grunt) {
       }
     },
     eslint: {
-      target: ['app.js'] //, 'app/**/*.js']
+      target: ['app.js', 'app/**/*.js']
     }
   });
 
