@@ -3,5 +3,9 @@
     "rules": {
         "linebreak-style": "off",
         "require-jsdoc": "off"        
+    },
+    "env": {
+        "node": true,
+        "mocha": true
     }
 }
