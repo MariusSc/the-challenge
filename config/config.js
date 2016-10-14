@@ -7,7 +7,7 @@ var rootPath = path.normalize(__dirname + '/..');
 
 var NODE_ENV = process.env.NODE_ENV || 'development';
 var NODE_HOST = process.env.NODE_HOST || '127.0.0.1';
-var NODE_PORT = process.env.NODE_PORT || 3000;
+var NODE_PORT = process.env.NODE_PORT || process.env.PORT ||3000;
 var MONGO_HOST = process.env.MONGO_HOST || '127.0.0.1';
 var MONGO_PORT = process.env.MONGO_PORT || 27017;
 var MONGO_DBNAME = process.env.MONGO_DBNAME || 'development';
