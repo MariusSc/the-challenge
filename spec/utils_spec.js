@@ -1,20 +1,19 @@
 'use strict';
 
-//////////// VARIABLES ///////////////////
+// ////////// VARIABLES ///////////////////
 
 var request = require('request');
-var should = require('should');
+require('should');
 var path = require('path');
 
 var config = require(path.join(__dirname, '../config/config'));
-var base_url = ''.concat('http://', config.app.address, ':', config.app.port);
+var baseUrl = ''.concat('http://', config.app.address, ':', config.app.port);
 
+// ////////// TESTS ///////////////////////
 
-//////////// TESTS ///////////////////////
-
-describe('Utility URIs', function () {
-  describe('GET /utils/ping', function () {
-    var url = base_url + '/utils/ping';
+describe('Utility URIs', function() {
+  describe('GET /utils/ping', function() {
+    var url = baseUrl + '/utils/ping';
 
     var options = {
       method: 'GET',
@@ -24,23 +23,23 @@ describe('Utility URIs', function () {
       }
     };
 
-    it('should respond with a status code of 200', function (done) {
-      request(options, function (error, response, body) {
+    it('should respond with a status code of 200', function(done) {
+      request(options, function(error, response, body) {
         response.statusCode.should.be.exactly(200);
         done();
       });
     });
 
-    it('should respond with \'true\'', function (done) {
-      request(options, function (error, response, body) {
+    it('should respond with \'true\'', function(done) {
+      request(options, function(error, response, body) {
         body.should.be.exactly('true');
         done();
       });
     });
   });
 
-  describe('GET /utils/health', function () {
-    var url = base_url + '/utils/health';
+  describe('GET /utils/health', function() {
+    var url = baseUrl + '/utils/health';
 
     var options = {
       method: 'GET',
@@ -50,15 +49,15 @@ describe('Utility URIs', function () {
       }
     };
 
-    it('should respond with a status code of 200', function (done) {
-      request(options, function (error, response, body) {
+    it('should respond with a status code of 200', function(done) {
+      request(options, function(error, response, body) {
         response.statusCode.should.be.exactly(200);
         done();
       });
     });
 
-    it('should respond with a \'status\' of \'UP\'', function (done) {
-      request(options, function (error, response, body) {
+    it('should respond with a \'status\' of \'UP\'', function(done) {
+      request(options, function(error, response, body) {
         var status = JSON.parse(body);
         status.should.have.a.property('status', 'UP');
         done();
@@ -66,8 +65,8 @@ describe('Utility URIs', function () {
     });
   });
 
-  describe('GET /utils/config', function () {
-    var url = base_url + '/utils/config';
+  describe('GET /utils/config', function() {
+    var url = baseUrl + '/utils/config';
 
     var options = {
       method: 'GET',
@@ -77,15 +76,15 @@ describe('Utility URIs', function () {
       }
     };
 
-    it('should respond with a status code of 200', function (done) {
-      request(options, function (error, response, body) {
+    it('should respond with a status code of 200', function(done) {
+      request(options, function(error, response, body) {
         response.statusCode.should.be.exactly(200);
         done();
       });
     });
 
-    it('should respond with exactly (1) non-null \'config\' object', function (done) {
-      request(options, function (error, response, body) {
+    it('should respond with exactly (1) non-null \'config\' object', function(done) {
+      request(options, function(error, response, body) {
         var config = JSON.parse(body);
         config.should.be.an.instanceof(Object).and.not.null;
         done();
@@ -93,8 +92,8 @@ describe('Utility URIs', function () {
     });
   });
 
-  describe('GET /utils/env', function () {
-    var url = base_url + '/utils/env';
+  describe('GET /utils/env', function() {
+    var url = baseUrl + '/utils/env';
 
     var options = {
       method: 'GET',
@@ -104,19 +103,20 @@ describe('Utility URIs', function () {
       }
     };
 
-    it('should respond with a status code of 200', function (done) {
-      request(options, function (error, response, body) {
+    it('should respond with a status code of 200', function(done) {
+      request(options, function(error, response, body) {
         response.statusCode.should.be.exactly(200);
         done();
       });
     });
 
-    it('should respond with exactly (1) non-null \'env\' object', function (done) {
-      request(options, function (error, response, body) {
-        var env = JSON.parse(body);
-        env.should.be.an.instanceof(Object).and.not.null;
-        done();
+    it('should respond with exactly (1) non-null \'env\' object',
+      function(done) {
+        request(options, function(error, response, body) {
+          var env = JSON.parse(body);
+          env.should.be.an.instanceof(Object).and.not.null;
+          done();
+        });
       });
-    });
   });
 });
