@@ -19,7 +19,7 @@ module.exports = function() {
   // db.on('connected', function () {
   //   log.info('Mongodb connection open to ' + db_url);
   // });
-  // db.on('error', function () {    
+  // db.on('error', function () {
   //   throw new Error('unable to connect to database at ' + db_url);
   // });
   // db.on('disconnected', function () {

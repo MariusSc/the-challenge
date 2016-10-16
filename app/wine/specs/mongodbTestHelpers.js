@@ -1,13 +1,12 @@
 'use strict';
 
+var path = require('path');
+var log = require(path.join(__dirname, '../../../log'));
+var mongoose = require('mongoose');
+require(path.join(__dirname, '../models/wine'));
+var Wine = mongoose.model('Wine');
+
 function removeWines(callback, options) {
-  var path = require('path');
-  var mongoose = require('mongoose');
-  require(path.join(__dirname, '../app/models'));
-  var Wine = mongoose.model('Wine');
-
-  var log = require(path.join(__dirname, '../log'));
-
   Wine.remove(options, function(error) {
     if (error) {
       log.error(error);
@@ -17,9 +16,6 @@ function removeWines(callback, options) {
 }
 
 function saveWine(callback, wine) {
-  var path = require('path');
-  var log = require(path.join(__dirname, '../log'));
-
   wine.save(function(error, wineSaved) {
     if (error) {
       log.error(error);

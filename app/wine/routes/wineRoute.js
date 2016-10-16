@@ -80,6 +80,7 @@ function validateWineObject(wine) {
 }
 
 module.exports = function(server) {
+  console.log("---- connected ----");
   server.get({path: PATH, version: VERSION}, findDocuments);
   server.get({path: PATH + '/:id', version: VERSION}, findOneDocument);
   server.post({path: PATH, version: VERSION}, createDocument);

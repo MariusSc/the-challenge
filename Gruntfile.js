@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 
     exec: {
       mochaTests: {
-        cmd: 'node ./node_modules/mocha/bin/mocha ./spec/ --reporter spec --debug'
+        cmd: 'node ./node_modules/mocha/bin/mocha ./app/wine/specs/*spec.js --reporter spec --debug'
       }
     },
     eslint: {

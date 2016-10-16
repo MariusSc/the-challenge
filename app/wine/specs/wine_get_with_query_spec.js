@@ -2,19 +2,17 @@
 
 var path = require('path');
 
-require(path.join(__dirname, '../app'));
-
-var request = require('request');
-
+require(path.join(__dirname, './startServer'));
 require('should');
-var async = require("async");
 
-var config = require(path.join(__dirname, '../config/config'));
+var async = require('async');
+var request = require('request');
+var config = require('../../../config/config');
 var baseUrl = ''.concat('http://', config.app.address, ':', config.app.port);
+var mongodbHelpers = require(path.join(__dirname, './mongodbTestHelpers'));
+
 var url = baseUrl + '/wines';
 var requestOptions = {};
-
-var mongodbHelpers = require(path.join(__dirname, './mongodbTestHelpers'));
 
 describe('Run tests on Wine API', function() {
   describe('GET /wines', function() {

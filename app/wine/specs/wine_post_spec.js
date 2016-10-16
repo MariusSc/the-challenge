@@ -2,14 +2,12 @@
 
 var path = require('path');
 
-require(path.join(__dirname, '../app'));
+require(path.join(__dirname, './startServer'));
 require('should');
 
 var request = require('request');
-
-var config = require(path.join(__dirname, '../config/config'));
+var config = require('../../../config/config');
 var baseUrl = ''.concat('http://', config.app.address, ':', config.app.port);
-
 var mongodbHelpers = require(path.join(__dirname, './mongodbTestHelpers'));
 var wineTestHelpers = require(path.join(__dirname, './wineTestHelpers'));
 
