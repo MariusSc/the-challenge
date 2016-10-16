@@ -1,0 +1,216 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Wines",
+		"_postman_id": "6924587f-0438-e80b-b27f-b032aea4aa28",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/wines",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines?year,name,country,type",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines?year=2010",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines/1",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines/1",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/widgets/N212QZOD9B",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines/1",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines/1813",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Cabernet sauvignon\",\r\n    \"year\": 2010,\r\n    \"country\": \"France\",\r\n    \"type\": \"red\",\r\n    \"description\": \"Similar to merlot\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines/ (sample data 1)",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Cabernet sauvignon\",\r\n    \"year\": 2010,\r\n    \"country\": \"France\",\r\n    \"type\": \"red\",\r\n    \"description\": \"Similar to merlot\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines/ (sample data 2)",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Barbera\",\r\n    \"year\": 2010,\r\n    \"country\": \"Italy\",\r\n    \"type\": \"red\",\r\n    \"description\": \"Similar to Mueller-Thurgau\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines/ (sample data 3)",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Grenache, Syrah, Cinsault\",\r\n    \"year\": 2015,\r\n    \"country\": \"France\",\r\n    \"type\": \"rose\",\r\n    \"description\": \"Tasts fresh, fruity and creamy\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/wines/ (sample data 4)",
+			"request": {
+				"url": "http://{{hostname}}:{{port}}/wines",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Grauburgunder\",\r\n    \"year\": 2011,\r\n    \"country\": \"Germany\",\r\n    \"type\": \"white\",\r\n    \"description\": \"Dry and crisp wine\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

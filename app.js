@@ -5,7 +5,7 @@ var path = require('path');
 
 var config = require(path.join(__dirname, '/config/config'));
 var log = require(path.join(__dirname, '/log'));
-var appLoader = require(path.join(__dirname, '/app/appLoader'));
+var appComposer = require(path.join(__dirname, '/app/appComposer'));
 var dbConnection = require(path.join(__dirname, '/db-connection'));
 
 dbConnection();
@@ -38,7 +38,7 @@ server.on('uncaughtException', function(req, res, route, err) {
   res.end();
 });
 
-appLoader(server);
+appComposer(server);
 
 if (config.log.level.toLowerCase() === 'debug') {
   server.on('after', restify.auditLogger({log: log}));

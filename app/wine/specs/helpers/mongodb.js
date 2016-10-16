@@ -1,9 +1,8 @@
 'use strict';
 
 var path = require('path');
-var log = require(path.join(__dirname, '../../../log'));
+var log = require(path.join(__dirname, '../../../../log'));
 var mongoose = require('mongoose');
-require(path.join(__dirname, '../models/wine'));
 var Wine = mongoose.model('Wine');
 
 function removeWines(callback, options) {

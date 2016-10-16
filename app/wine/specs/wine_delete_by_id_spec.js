@@ -2,14 +2,14 @@
 
 var path = require('path');
 
-require(path.join(__dirname, './startServer'));
+require(path.join(__dirname, './helpers/startServer'));
 require('should');
 
 var async = require('async');
 var request = require('request');
 var config = require('../../../config/config');
 var baseUrl = ''.concat('http://', config.app.address, ':', config.app.port);
-var mongodbHelpers = require(path.join(__dirname, './mongodbTestHelpers'));
+var mongodbHelpers = require(path.join(__dirname, './helpers/mongodb'));
 
 var wineIdOfTheInsertedWineObject = 0;
 var options = {};
