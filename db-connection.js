@@ -6,8 +6,7 @@ var config = require(path.join(__dirname, '/config/config'));
 var mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
 
-// var log = require(path.join(__dirname, 'log'));
-
+// Turns mongoose verbose modus on
 // mongoose.set('debug', true);
 mongoose.Promise = require('bluebird');
 

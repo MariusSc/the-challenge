@@ -1,7 +1,7 @@
 {
   "name": "the-challenge",
   "version": "0.1.0",
-  "description": "A basic RESTful CRUD API service, based on Node, Restify, and MongoDB",
+  "description": "A basic RESTful CRUD API service, based on Node, Restify and MongoDB",
   "author": "Marius Schumann",
   "main": "app.js",
   "engines": {
@@ -9,13 +9,12 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "grunt test"
+    "test": "grunt"
   },
   "dependencies": {
     "bunyan": "^1.8.1",
     "mongoose": "^4.4.20",
     "mongoose-auto-increment": "^5.0.1",
-    "mongoose-currency": "^0.2.0",
     "mongoose-unique-validator": "^1.0.2",
     "restify": "^4.1.0"
   },
