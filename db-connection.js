@@ -1,18 +1,22 @@
 'use strict';
 
-var mongoose = require('mongoose');
 var path = require('path');
-
 var config = require(path.join(__dirname, '/config/config'));
-var log = require(path.join(__dirname, 'log'));
 
-//mongoose.set('debug', true);
+var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+
+// var log = require(path.join(__dirname, 'log'));
+
+// mongoose.set('debug', true);
 mongoose.Promise = require('bluebird');
 
-module.exports = function () {
-  var db_url = ''.concat('mongodb://', config.db.host, ':', config.db.port, '/', config.db.name);
-  mongoose.connect(db_url);
-  var db = mongoose.connection;
+module.exports = function() {
+  var dbUrl = ''.concat('mongodb://', config.db.host, ':', config.db.port, '/', config.db.name);
+  mongoose.connect(dbUrl);
+  autoIncrement.initialize(mongoose.connection);
+
+  // var db = mongoose.connection;
   // db.on('connected', function () {
   //   log.info('Mongodb connection open to ' + db_url);
   // });
