@@ -91,6 +91,22 @@ module.exports = function(server) {
     var projection = {};
     var options = {};
 
+    if (req.query.year) {
+      conditions.year = req.query.year;
+    }
+
+    if (req.query.name) {
+      conditions.name = req.query.name;
+    }
+
+    if (req.query.type) {
+      conditions.type = req.query.type;
+    }
+
+    if (req.query.country) {
+      conditions.country = req.query.country;
+    }
+
     Wine
       .find(conditions, projection, options)
       .sort({id: 1}).exec(function(error, wines) {
@@ -112,7 +128,6 @@ module.exports = function(server) {
     var conditions = {id: req.params.id};
     var projection = {};
     var options = {};
-
     Wine.findOne(conditions, projection, options, function(error, wine) {
       if (error) {
         return next(error);
