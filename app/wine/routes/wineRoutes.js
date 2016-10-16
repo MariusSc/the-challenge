@@ -186,7 +186,7 @@ module.exports = function(server) {
     };
 
     var conditions = {id: wineId};
-    var options = {runValidators: true, upsert: false};
+    var options = {runValidators: true, upsert: false, new: true};
 
     Wine.findOneAndUpdate(conditions, wine, options, function(error, wineUpdated) {
       if (error) {
