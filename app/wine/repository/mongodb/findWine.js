@@ -2,7 +2,6 @@
 var mongoose = require('mongoose');
 var Wine = mongoose.model('Wine');
 
-
 module.exports = function(query, next) {
   var conditions = {};
   var projection = {};
