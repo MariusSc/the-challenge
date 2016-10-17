@@ -10,6 +10,7 @@ var request = require('request');
 var config = require('../../../config/config');
 var baseUrl = ''.concat('http://', config.app.address, ':', config.app.port);
 var mongodbHelpers = require(path.join(__dirname, './helpers/mongodb'));
+var wineRepository = require(path.join(__dirname, '../repository/wineRepository'));
 
 var wineIdOfTheInsertedWineObject = 0;
 var options = {};
@@ -69,15 +70,19 @@ describe('Run tests on Wine API', function() {
       request(options, function(error, response, body) {
         response.statusCode.should.be.exactly(200);
         body.should.have.a.property('success', true);
-        done();
+
+        wineRepository.find({id: wineIdOfTheInsertedWineObject}, function(error, wines) {
+          wines.should.have.a.property('length', 0);
+          done();
+        });
       });
     });
 
     it('should respond with status code 400 and an error message when wine object not found', function(done) {
       var options2 = {
-        url: baseUrl + '/wines/0',
+        url: baseUrl + '/wines/-1',
         body: wineObject,
-        method: 'PUT',
+        method: 'DELETE',
         headers: {
           accept: 'application/json'
         },
