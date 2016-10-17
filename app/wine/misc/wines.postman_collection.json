@@ -48,7 +48,7 @@
 			"response": []
 		},
 		{
-			"name": "/wines/1",
+			"name": "/wines/:id",
 			"request": {
 				"url": "http://{{hostname}}:{{port}}/wines/1",
 				"method": "GET",
@@ -68,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "/wines/1",
+			"name": "/wines/:id",
 			"request": {
 				"url": "http://{{hostname}}:{{port}}/widgets/N212QZOD9B",
 				"method": "DELETE",
@@ -88,7 +88,7 @@
 			"response": []
 		},
 		{
-			"name": "/wines/1",
+			"name": "/wines/:id",
 			"request": {
 				"url": "http://{{hostname}}:{{port}}/wines/1813",
 				"method": "PUT",
