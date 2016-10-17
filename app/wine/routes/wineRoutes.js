@@ -16,6 +16,11 @@ function createResponseBody(wine) {
   };
 }
 
+function sendResponse(res, statusCode, body) {
+  res.charSet('utf-8');
+  sendResponse(res, statusCode, body);
+}
+
 module.exports = function(server) {
   server.get({path: PATH, version: VERSION}, findDocuments);
   server.get({path: PATH + '/:id', version: VERSION}, findOneDocument);
@@ -26,7 +31,7 @@ module.exports = function(server) {
   function findDocuments(req, res, next) {
     wineRepository.find(req.params, function(error, wines) {
       if (error) {
-        res.send(400, {error: 'UNKNOWN_OBJECT'});
+        sendResponse(res, 400, {error: 'UNKNOWN_OBJECT'});
         return next(error);
       }
 
@@ -35,7 +40,7 @@ module.exports = function(server) {
         wineArray.push(createResponseBody(wine));
       });
 
-      res.send(200, wineArray);
+      sendResponse(res, 200, wineArray);
       return next();
     });
   }
@@ -44,15 +49,15 @@ module.exports = function(server) {
     var query = {id: req.params.id};
     wineRepository.find(query, function(error, wines) {
       if (error) {
-        res.send(400, {error: 'UNKNOWN_OBJECT'});
+        sendResponse(res, 400, {error: 'UNKNOWN_OBJECT'});
         return next(error);
       }
       if (wines.length <= 0) {
-        res.send(400, {error: 'UNKNOWN_OBJECT'});
+        sendResponse(res, 400, {error: 'UNKNOWN_OBJECT'});
         return next();
       }
 
-      res.send(200, createResponseBody(wines[0]));
+      sendResponse(res, 200, createResponseBody(wines[0]));
       return next();
     });
   }
@@ -60,10 +65,10 @@ module.exports = function(server) {
   function createDocument(req, res, next) {
     wineRepository.add(req.body, function(error, createdWineObject) {
       if (error) {
-        res.send(400, error);
+        sendResponse(res, 400, error);
         return next();
       }
-      res.send(200, createResponseBody(createdWineObject));
+      sendResponse(res, 200, createResponseBody(createdWineObject));
       return next();
     });
   }
@@ -71,10 +76,10 @@ module.exports = function(server) {
   function updateDocument(req, res, next) {
     wineRepository.update(req.params.id, req.body, function(error, updatedWineObject) {
       if (error) {
-        res.send(400, error);
+        sendResponse(res, 400, error);
         return next();
       }
-      res.send(200, createResponseBody(updatedWineObject));
+      sendResponse(res, 200, createResponseBody(updatedWineObject));
       return next();
     });
   }
@@ -82,11 +87,11 @@ module.exports = function(server) {
   function deleteDocument(req, res, next) {
     wineRepository.delete(req.params.id, function(error) {
       if (error) {
-        res.send(400, {error: 'UNKNOWN_OBJECT'});
+        sendResponse(res, 400, {error: 'UNKNOWN_OBJECT'});
         return next();
       }
 
-      res.send(200, {success: true});
+      sendResponse(res, 200, {success: true});
       return next();
     });
   }
