@@ -82,7 +82,7 @@ module.exports = function(server) {
   function deleteDocument(req, res, next) {
     wineRepository.delete(req.params.id, function(error) {
       if (error) {
-        res.send(400, {error: "UNKNOWN_OBJECT"});
+        res.send(400, {error: 'UNKNOWN_OBJECT'});
         return next();
       }
 

@@ -3,7 +3,7 @@
 function isEmpty(obj) {
   if (obj === null ||
       (typeof obj === 'undefined') ||
-      (typeof obj.valueOf() !== "string") ||
+      (typeof obj.valueOf() !== 'string') ||
       (obj.trim().length === 0)) {
     return true;
   }
@@ -11,8 +11,8 @@ function isEmpty(obj) {
 }
 
 function isYear(obj) {
-  if ((typeof obj === "undefined") ||
-      (typeof obj !== "number") ||
+  if ((typeof obj === 'undefined') ||
+      (typeof obj !== 'number') ||
       !Number.isInteger(obj) ||
       isNaN(obj) ||
       obj <= 0) {
@@ -24,19 +24,19 @@ function isYear(obj) {
 function validateWineObject(wine) {
   var validationResult = {validation: {}};
 
-  if (!wine.hasOwnProperty("name")) {
+  if (!wine.hasOwnProperty('name')) {
     validationResult.validation.name = 'MISSING';
   } else if (isEmpty(wine.name)) {
     validationResult.validation.name = 'INVALID';
   }
 
-  if (!wine.hasOwnProperty("year")) {
+  if (!wine.hasOwnProperty('year')) {
     validationResult.validation.year = 'MISSING';
   } else if (!isYear(wine.year)) {
     validationResult.validation.year = 'INVALID';
   }
 
-  if (!wine.hasOwnProperty("country")) {
+  if (!wine.hasOwnProperty('country')) {
     validationResult.validation.country = 'MISSING';
   } else if (isEmpty(wine.country)) {
     validationResult.validation.country = 'INVALID';
@@ -44,7 +44,7 @@ function validateWineObject(wine) {
 
   // API Improvment: Output a meaningful hint to the API user.
   // var typeHint = 'Valid values are \'red\', \'white\' or \'rose\'';
-  if (!wine.hasOwnProperty("type")) {
+  if (!wine.hasOwnProperty('type')) {
     validationResult.validation.type = 'MISSING';
   } else if (isEmpty(wine.type)) {
     validationResult.validation.type = 'INVALID';
