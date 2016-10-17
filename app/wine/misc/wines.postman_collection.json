@@ -70,7 +70,7 @@
 		{
 			"name": "/wines/:id",
 			"request": {
-				"url": "http://{{hostname}}:{{port}}/widgets/N212QZOD9B",
+				"url": "http://{{hostname}}:{{port}}/wines/234",
 				"method": "DELETE",
 				"header": [
 					{
