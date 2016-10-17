@@ -12,7 +12,7 @@ var MONGO_PORT = process.env.MONGO_PORT || 27017;
 var MONGO_DBNAME = process.env.MONGO_DBNAME || 'development';
 var LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 
-var APP_NAME = 'the-challenge';
+var APP_NAME = 'the-challenge ';
 
 var config = {
   development: {

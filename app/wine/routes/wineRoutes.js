@@ -18,7 +18,7 @@ function createResponseBody(wine) {
 
 function sendResponse(res, statusCode, body) {
   res.charSet('utf-8');
-  sendResponse(res, statusCode, body);
+  res.send(statusCode, body);
 }
 
 module.exports = function(server) {
